@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executar Funções</title>
+</head>
+<body>
+    <h1>Executar Funções</h1>
+
+    <label for="funcao">Selecione uma função:</label>
+    <select id="funcao">
+        <option value="mostrarMensagemInicial">Mostrar Mensagem Inicial</option>
+        <option value="checarSeEPar">Checar se é Par</option>
+        <option value="calcularMedia">Calcular Média</option>
+        <option value="converterParaMaiusculo">Converter para Maiúsculo</option>
+        <option value="checarPrimalidade">Checar Primalidade</option>
+        <option value="inverterOrdemArray">Inverter Ordem do Array</option>
+        <option value="converterParaBinario">Converter para Binário</option>
+        <option value="calcularFatorial">Calcular Fatorial</option>
+    </select>
+
+    <div id="dadosEntrada"></div>
+
+    <button onclick="executarFuncao()">Rodar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function executarFuncao() {
+            var select = document.getElementById("funcao");
+            var funcaoSelecionada = select.value;
+
+            var resultado = document.getElementById("resultado");
+            resultado.innerHTML = "";
+
+            switch (funcaoSelecionada) {
+                case "mostrarMensagemInicial":
+                    resultado.innerHTML = "Mensagem exibida no alerta!";
+                    mostrarMensagemInicial();
+                    break;
+                case "checarSeEPar":
+                    var numero = parseInt(document.getElementById("entrada").value);
+                    resultado.innerHTML = "O número " + numero + " é " + (checarSeEPar(numero) ? "par" : "ímpar") + ".";
+                    break;
+                case "calcularMedia":
+                    var numeros = document.getElementById("entrada").value.split(",").map(Number);
+                    resultado.innerHTML = "A média dos números é: " + calcularMedia(numeros);
+                    break;
+                case "converterParaMaiusculo":
+                    var string = document.getElementById("entrada").value;
+                    resultado.innerHTML = "Texto em maiúsculo: " + converterParaMaiusculo(string);
+                    break;
+                case "checarPrimalidade":
+                    var numero = parseInt(document.getElementById("entrada").value);
+                    resultado.innerHTML = "O número " + numero + (checarPrimalidade(numero) ? " é primo." : " não é primo.");
+                    break;
+                case "inverterOrdemArray":
+                    var array = document.getElementById("entrada").value.split(",").map(Number);
+                    resultado.innerHTML = "Array invertido: [" + inverterOrdemArray(array).join(", ") + "]";
+                    break;
+                case "converterParaBinario":
+                    var numero = parseInt(document.getElementById("entrada").value);
+                    resultado.innerHTML = "O número em binário é: " + converterParaBinario(numero);
+                    break;
+                case "calcularFatorial":
+                    var numero = parseInt(document.getElementById("entrada").value);
+                    resultado.innerHTML = "O fatorial de " + numero + " é: " + calcularFatorial(numero);
+                    break;
+                default:
+                    resultado.innerHTML = "Nenhuma função selecionada!";
+            }
+        }
+
+        function exibirCampoEntrada() {
+            var select = document.getElementById("funcao");
+            var funcaoSelecionada = select.value;
+
+            var dadosEntrada = document.getElementById("dadosEntrada");
+
+            switch (funcaoSelecionada) {
+                case "checarSeEPar":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite um número:</label><input type='number' id='entrada'>";
+                    break;
+                case "calcularMedia":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite os números separados por vírgula:</label><input type='text' id='entrada'>";
+                    break;
+                case "converterParaMaiusculo":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite um texto:</label><input type='text' id='entrada'>";
+                    break;
+                case "checarPrimalidade":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite um número:</label><input type='number' id='entrada'>";
+                    break;
+                case "inverterOrdemArray":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite os números do array separados por vírgula:</label><input type='text' id='entrada'>";
+                    break;
+                case "converterParaBinario":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite um número:</label><input type='number' id='entrada'>";
+                    break;
+                case "calcularFatorial":
+                    dadosEntrada.innerHTML = "<label for='entrada'>Digite um número:</label><input type='number' id='entrada'>";
+                    break;
+                default:
+                    dadosEntrada.innerHTML = "";
+            }
+        }
+
+        // Chamado quando a seleção é alterada
+        document.getElementById("funcao").addEventListener("change", exibirCampoEntrada);
+
+        // Funções já definidas
+        function mostrarMensagemInicial() {
+            alert("Bem-vindo!");
+        }
+
+        function checarSeEPar(numero) {
+            return numero % 2 === 0;
+        }
+
+        function calcularMedia(numeros) {
+            const soma = numeros.reduce((total, numero) => total + numero, 0);
+            return soma / numeros.length;
+        }
+
+        function converterParaMaiusculo(string) {
+            return string.toUpperCase();
+        }
+
+        function checarPrimalidade(numero) {
+            if (numero <= 1) return false;
+            if (numero <= 3) return true;
+            if (numero % 2 === 0 || numero % 3 === 0) return false;
+            let divisor = 5;
+            while (divisor * divisor <= numero) {
+                if (numero % divisor === 0 || numero % (divisor + 2) === 0) return false;
+                divisor += 6;
+            }
+            return true;
+        }
+
+        function inverterOrdemArray(array) {
+            return array.reverse();
+        }
+
+        function converterParaBinario(numero) {
+            return numero.toString(2);
+        }
+
+        function calcularFatorial(numero) {
+            if (numero === 0 || numero === 1) return 1;
+            let resultado = 1;
+            for (let i = 2; i <= numero; i++) {
+                resultado *= i;
+            }
+            return resultado;
+        }
+
+        // Exibir campo de entrada inicialmente
+        exibirCampoEntrada();
+    </script>
+</body>
+</html>
