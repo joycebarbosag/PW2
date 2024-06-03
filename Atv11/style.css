@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+#movieSearch {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 20px auto;
+    display: block;
+}
+
+#searchButton {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+#movieDetails {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#movieDetails img {
+    max-width: 100%;
+    display: block;
+    margin-top: 10px;
+    border-radius: 5px;
+}
